@@ -16,10 +16,8 @@ import {
   StatusBar,
   View,
 } from 'react-native';
-
 import { Colors } from 'react-native/Libraries/NewAppScreen';
-
-import Header from './src/components/Header';
+import { Header } from './src/components';
 import { Button } from 'react-native-paper';
 
 const App = () => {
