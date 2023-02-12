@@ -1,23 +1,12 @@
-import React from 'react';
-import { View } from 'react-native';
-import { Text } from 'react-native-paper';
-
+import React, { FC } from 'react';
+import { SafeAreaView, StyleSheet } from 'react-native';
 import { Loading } from '../components';
-
+import { FlatListComponent } from '../components/FlatListComponent';
 import { useGetUsersQuery } from '../features/api/apiSlice';
-import { User } from '../types/users';
 
-let PostExcerpt = (user: User) => {
-  return (
-    <View key={user.id}>
-      <Text>{user.name}</Text>
-    </View>
-  );
-};
-
-export const UserListScreen = () => {
+export const UserListScreen: FC = () => {
   const {
-    data: usersArray,
+    data: userArray,
     isLoading,
     isSuccess,
     isError,
@@ -29,17 +18,26 @@ export const UserListScreen = () => {
   if (isLoading) {
     content = <Loading />;
   } else if (isSuccess) {
-    content = usersArray.map((user: User) => (
-      <PostExcerpt key={user.id} user={user} />
-    ));
+    content = <FlatListComponent users={userArray} />;
   } else if (isError) {
     content = <div>{error.toString()}</div>;
   }
 
-  return (
-    <View>
-      <Text>Users</Text>
-      {content}
-    </View>
-  );
+  return <SafeAreaView style={styles.container}>{content}</SafeAreaView>;
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginTop: 0,
+  },
+  item: {
+    backgroundColor: '#f9c2ff',
+    padding: 20,
+    marginVertical: 8,
+    marginHorizontal: 16,
+  },
+  title: {
+    fontSize: 32,
+  },
+});

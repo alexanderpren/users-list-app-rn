@@ -1,5 +1,9 @@
 export interface Users {
-  User: User[];
+  users: User[];
+}
+
+export interface UsersListProps {
+  users: User[];
 }
 
 export interface User {

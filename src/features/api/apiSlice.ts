@@ -11,7 +11,7 @@ export const apiSlice = createApi({
   }),
 
   endpoints: builder => ({
-    getUsers: builder.query<User, string | void>({
+    getUsers: builder.query<User[], string | void>({
       query: () => '/users',
     }),
   }),

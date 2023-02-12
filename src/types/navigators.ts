@@ -1,7 +1,13 @@
-import { RouteProp } from '@react-navigation/native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 export type HomeNavigatorProps = {
   Home: {};
-  UserList: {};
   UserDetail: {};
+  UserList: {};
 };
+
+export type Props = NativeStackScreenProps<
+  HomeNavigatorProps,
+  'UserDetail',
+  'UserList'
+>;
