@@ -5,10 +5,12 @@ import { HomeNavigatorProps } from '../types/navigators';
 import headerStyle from '../styles/header';
 import screenBaseStyle from '../styles/screen-base';
 import { HeaderTitle } from '../components/HeaderTitle';
-
+import { selectName } from '../features/user/userSlice';
+import { useAppSelector } from '../app/hooks';
 const Stack = createNativeStackNavigator<HomeNavigatorProps>();
 
 export const AppStack = () => {
+  const nameTitle = useAppSelector(selectName);
   return (
     <Stack.Navigator
       initialRouteName="Home"
@@ -22,7 +24,6 @@ export const AppStack = () => {
           headerShown: false,
         }}
       />
-
       <Stack.Screen
         name="UserList"
         component={UserListScreen}
@@ -35,7 +36,7 @@ export const AppStack = () => {
         name="UserDetail"
         component={DetailsScreen}
         options={{
-          headerTitle: () => <HeaderTitle title="User Detail" />,
+          headerTitle: () => <HeaderTitle title={nameTitle} />,
           headerStyle: headerStyle,
         }}
       />

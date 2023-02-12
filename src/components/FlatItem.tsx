@@ -4,18 +4,21 @@ import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { User } from '../types/users';
 import { useNavigation } from '@react-navigation/native';
+import { useAppDispatch } from '../app/hooks';
+import { setName } from '../features/user/userSlice';
 
 export const FlatItem: React.FC<User> = ({ userData }) => {
+  const dispatch = useAppDispatch();
   const navigation = useNavigation<any>();
   const { name, email } = userData;
 
+  const setNameTitle = () => {
+    dispatch(setName({ id: userData.id, name: userData.name }));
+    navigation.push('UserDetail', userData);
+  };
+
   return (
-    <TouchableOpacity
-      style={styles.container}
-      onPress={() => {
-        /* 1. Navigate to the Details route with params */
-        navigation.push('UserDetail', userData);
-      }}>
+    <TouchableOpacity style={styles.container} onPress={setNameTitle}>
       <List.Item
         title={name}
         description={email}
