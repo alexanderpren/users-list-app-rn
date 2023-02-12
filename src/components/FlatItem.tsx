@@ -12,13 +12,13 @@ export const FlatItem: React.FC<User> = ({ userData }) => {
   const navigation = useNavigation<any>();
   const { name, email } = userData;
 
-  const setNameTitle = () => {
+  const goDetails = () => {
     dispatch(setName({ id: userData.id, name: userData.name }));
     navigation.push('UserDetail', userData);
   };
 
   return (
-    <TouchableOpacity style={styles.container} onPress={setNameTitle}>
+    <TouchableOpacity style={styles.container} onPress={goDetails}>
       <List.Item
         title={name}
         description={email}

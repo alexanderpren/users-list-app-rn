@@ -10,13 +10,15 @@ import {
 import { MD3Colors } from 'react-native-paper';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
+type tel = {
+  number: string;
+};
 
-const Tel = ({ name, number }) => {
-  const handlePress = async number => {
-    console.log('llegando');
+const Tel = ({ number }: tel) => {
+  const handlePress = async () => {
     let phoneNumber = '';
     if (Platform.OS === 'android') {
-      phoneNumber = `tel:+521234567`;
+      phoneNumber = `tel:${number}`;
     } else {
       phoneNumber = `telprompt:${number}`;
     }
@@ -34,10 +36,10 @@ const Tel = ({ name, number }) => {
         </View>
         <View style={styles.telRow}>
           <View style={styles.telNumberColumn}>
-            <Text style={styles.telNumberText}>999999999</Text>
+            <Text style={styles.telNumberText}>{number}</Text>
           </View>
           <View style={styles.telNameColumn}>
-            <Text style={styles.telNameText}>alex</Text>
+            <Text style={styles.telNameText}>Home</Text>
           </View>
         </View>
         <View style={styles.smsRow}>
