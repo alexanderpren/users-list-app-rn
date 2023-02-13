@@ -1,14 +1,16 @@
-import { Text, View } from 'react-native';
+import { Text, View, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { Card, Divider, MD3Colors } from 'react-native-paper';
 import { Image, ImageBackground, Platform, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Address } from '../types/users';
+import { useNavigation } from '@react-navigation/native';
 type PropsProfile = {
   username: string;
   address: Address;
 };
 export const CardProfile = ({ username, address }: PropsProfile) => {
+  const navigation = useNavigation<any>();
   return (
     <Card mode="contained" style={styles.cardContainer}>
       <View style={styles.headerContainer}>
@@ -21,7 +23,14 @@ export const CardProfile = ({ username, address }: PropsProfile) => {
               source={{ uri: 'https://i.imgur.com/GfkNpVG.jpg' }}
             />
             <Text style={styles.userNameText}>{username}</Text>
-            <View style={styles.userAddressRow}>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.push('Maps', {
+                  lat: parseInt(address.geo.lat, 10),
+                  long: parseInt(address.geo.lng, 10),
+                })
+              }
+              style={styles.userAddressRow}>
               <View>
                 <Icon
                   name="map-marker"
@@ -32,7 +41,7 @@ export const CardProfile = ({ username, address }: PropsProfile) => {
               <View style={styles.userCityRow}>
                 <Text style={styles.userCityText}>{`${address.city}`}</Text>
               </View>
-            </View>
+            </TouchableOpacity>
           </View>
         </ImageBackground>
       </View>

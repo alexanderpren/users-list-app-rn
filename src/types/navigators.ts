@@ -4,6 +4,7 @@ export type HomeNavigatorProps = {
   Home: {};
   UserDetail: {};
   UserList: {};
+  Maps: {};
 };
 
 export type Props = NativeStackScreenProps<

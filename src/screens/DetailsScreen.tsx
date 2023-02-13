@@ -1,10 +1,6 @@
 import React from 'react';
-
 import { ScrollView, StyleSheet, View } from 'react-native';
-import { CardProfile } from '../components/CardProfile';
-
-import Tel from '../components/Tel';
-import { Props } from '../types/navigators';
+import { CardProfile, Tel, TextDetail, Website } from '../components';
 
 export const DetailsScreen = ({ route }: any) => {
   const { username, website, company, address, phone, email } = route.params;
@@ -13,6 +9,13 @@ export const DetailsScreen = ({ route }: any) => {
       <View style={styles.container}>
         <CardProfile username={username} address={address} />
         <Tel number={phone} />
+        <TextDetail title="email" icon="envelope" text={email} />
+        <Website website={website} />
+        <TextDetail
+          title="Company"
+          icon="internet-explorer"
+          text={company.name}
+        />
       </View>
     </ScrollView>
   );

@@ -1,6 +1,11 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { HomeScreen, UserListScreen, DetailsScreen } from '../screens/';
+import {
+  HomeScreen,
+  UserListScreen,
+  DetailsScreen,
+  MapScreen,
+} from '../screens/';
 import { HomeNavigatorProps } from '../types/navigators';
 import headerStyle from '../styles/header';
 import screenBaseStyle from '../styles/screen-base';
@@ -37,6 +42,14 @@ export const AppStack = () => {
         component={DetailsScreen}
         options={{
           headerTitle: () => <HeaderTitle title={nameTitle} />,
+          headerStyle: headerStyle,
+        }}
+      />
+      <Stack.Screen
+        name="Maps"
+        component={MapScreen}
+        options={{
+          headerTitle: () => <HeaderTitle title="maps" />,
           headerStyle: headerStyle,
         }}
       />

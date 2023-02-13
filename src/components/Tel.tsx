@@ -14,7 +14,7 @@ type tel = {
   number: string;
 };
 
-const Tel = ({ number }: tel) => {
+export const Tel = ({ number }: tel) => {
   const handlePress = async () => {
     let phoneNumber = '';
     if (Platform.OS === 'android') {
@@ -25,7 +25,7 @@ const Tel = ({ number }: tel) => {
     if (await Linking.canOpenURL(phoneNumber)) {
       await Linking.openURL(phoneNumber);
     } else {
-      console.log('Error: Could not open phone number.');
+      console.error('Error: Could not open phone number.');
     }
   };
   return (
@@ -98,5 +98,3 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
 });
-
-export default Tel;
