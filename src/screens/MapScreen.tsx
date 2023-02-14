@@ -1,41 +1,39 @@
 import React from 'react';
-import { StyleSheet, View, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
-import { mapStyle } from '../styles/mapStyle';
-type GeoProps = {
-  lat: number;
-  long: number;
-};
 
 export const MapScreen = ({ route }: any) => {
   const { lat, long } = route.params;
+
   return (
-    <View style={styles.container}>
-      <MapView
-        customMapStyle={mapStyle}
-        provider={PROVIDER_GOOGLE}
-        style={styles.mapStyle}
-        initialRegion={{
-          latitude: lat,
-          longitude: long,
-          latitudeDelta: 0.003,
-          longitudeDelta: 0.003,
-        }}
-        mapType="standard"
-      />
-    </View>
+    <MapView
+      provider={PROVIDER_GOOGLE}
+      style={styles.mapStyle}
+      initialRegion={{
+        latitude: lat,
+        longitude: long,
+        latitudeDelta: 0.003,
+        longitudeDelta: 0.003,
+      }}
+      mapType="standard"
+    />
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: 'black',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: 'flex-end',
     alignItems: 'center',
-    justifyContent: 'center',
   },
   mapStyle: {
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
   },
 });
