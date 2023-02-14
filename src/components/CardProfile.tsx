@@ -22,7 +22,9 @@ export const CardProfile = ({ username, address }: PropsProfile) => {
               style={styles.userImage}
               source={{ uri: 'https://i.imgur.com/GfkNpVG.jpg' }}
             />
-            <Text style={styles.userNameText}>{username}</Text>
+            <Text style={styles.userNameText}>
+              {username ? username : 'error'}
+            </Text>
             <TouchableOpacity
               onPress={() =>
                 navigation.push('Maps', {
