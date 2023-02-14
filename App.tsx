@@ -9,8 +9,7 @@
  */
 
 import React from 'react';
-import { SafeAreaView, StyleSheet, ScrollView, StatusBar } from 'react-native';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+
 import Router from './src/routes/Router';
 
 const App = () => {
